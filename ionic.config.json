@@ -1,0 +1,7 @@
+{
+  "name": "gerenciador-eventos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

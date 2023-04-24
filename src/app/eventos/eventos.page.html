@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Lista de eventos </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let evento of eventos">
+          <div class="container" [routerLink]="['../edicao', evento.id]">
+            <ion-card class="card">
+              <div class="lines"></div>
+              <div class="imgBx">
+                <ion-icon name="diamond-outline"></ion-icon>
+              </div>
+              <div class="content">
+                <ion-card-header>
+                  <ion-card-title>{{evento.nome}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p>{{getOrganizadorName(evento.organizadorId)}}</p>
+                </ion-card-content>
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button [routerLink]="['../cadastro']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal #modalComponent cssClass="inline_modal">
+    <ng-template>
+      <app-form-page></app-form-page>
+    </ng-template>
+  </ion-modal>
+</ion-content>

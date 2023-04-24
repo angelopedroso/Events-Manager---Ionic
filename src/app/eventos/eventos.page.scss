@@ -1,0 +1,93 @@
+ion-content {
+  height: 100vh;
+
+  ion-list {
+    background-color: var(--ion-background-color);
+
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      position: relative;
+      min-width: 16.5rem;
+      padding: 10px;
+      height: 11.25rem;
+      transition: 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        .lines::before {
+          animation-play-state: running;
+        }
+      }
+
+      .lines {
+        position: absolute;
+        inset: 0;
+        background: var(--ion-color-light-shade);
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 40rem;
+          height: 7.5rem;
+          background: linear-gradient(
+            transparent,
+            var(--ion-color-primary),
+            var(--ion-color-primary),
+            var(--ion-color-primary),
+            transparent
+          );
+          animation: animate 4s linear infinite;
+          animation-play-state: paused;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 3px;
+          background: var(--ion-color-light);
+        }
+      }
+
+      .imgBx {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 0px;
+
+        ion-icon {
+          width: 2rem;
+          height: 2rem;
+          color: var(--ion-color-success);
+        }
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        ion-card-header {
+          padding-bottom: 2px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

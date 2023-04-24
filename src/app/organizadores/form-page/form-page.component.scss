@@ -1,0 +1,23 @@
+ion-header {
+  ion-button {
+    color: var(--ion-color-primary);
+    font-weight: bold;
+  }
+}
+
+ion-content {
+  min-height: 100vh;
+  --background: var(--ion-item-background);
+
+  ion-button {
+    margin: 3vh 3vh 0 3vh;
+    font-size: 0.9rem;
+  }
+}
+
+ion-list {
+  ion-input {
+    --border: 1px solid var(--ion-color-medium);
+    --border-radius: 10px;
+  }
+}

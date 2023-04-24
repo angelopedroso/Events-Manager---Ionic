@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Edição do evento </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form [formGroup]="eventoForm">
+      <ion-list>
+        <ion-item-group class="ion-padding-horizontal ion-margin">
+          <ion-input
+            label="Nome*"
+            labelPlacement="floating"
+            fill="outline"
+            formControlName="nome"
+            placeholder="Digite o nome do evento responsável"
+          ></ion-input>
+        </ion-item-group>
+        <ion-item-group class="ion-padding-horizontal ion-margin">
+          <ion-input
+            label="Sobrenome*"
+            labelPlacement="floating"
+            fill="outline"
+            formControlName="sobrenome"
+            placeholder="Digite o nome da empresa"
+          ></ion-input>
+        </ion-item-group>
+        <ion-item-group class="ion-padding-horizontal ion-margin">
+          <ion-input
+            label="E-mail*"
+            labelPlacement="floating"
+            fill="outline"
+            type="email"
+            formControlName="email"
+            placeholder="Digite o e-mail"
+          ></ion-input>
+        </ion-item-group>
+        <ion-item-group class="ion-padding-horizontal ion-margin">
+          <ion-input
+            type="tel"
+            label="Telefone*"
+            labelPlacement="floating"
+            fill="outline"
+            placeholder="(00)00000-0000"
+            formControlName="telefone"
+            appMask="(**)9****-****"
+            maxlength="14"
+          ></ion-input>
+          <ion-note
+            color="danger"
+            *ngIf="eventoForm.controls['telefone'].hasError('required')"
+          >
+            O campo é obrigatório
+          </ion-note>
+          <ion-note
+            color="danger"
+            *ngIf="eventoForm.controls['telefone'].hasError('invalidPhone')"
+          >
+            Telefone inválido
+          </ion-note>
+        </ion-item-group>
+      </ion-list>
+      <ion-button
+        type="submit"
+        expand="block"
+        size="large"
+        shape="round"
+        color="primary"
+        (click)="save()"
+        [disabled]="!eventoForm.valid"
+      >
+        Editar
+      </ion-button>
+    </form>
+
+    <ion-list>
+      <ion-item-sliding #slidingItem>
+        <ion-item>
+          <ion-label> <p></p></ion-label>
+        </ion-item>
+
+        <ion-item-options>
+          <ion-item-option color="danger">
+            <ion-icon name="trash" class="icon-size"></ion-icon
+          ></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>

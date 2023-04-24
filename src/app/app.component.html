@@ -1,0 +1,76 @@
+<ion-app>
+  <ion-menu contentId="main-content">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>Menu</ion-list-header>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item
+            routerDirection="root"
+            [routerLink]="[appDashboard.url]"
+            lines="none"
+            detail="false"
+            routerLinkActive="selected"
+          >
+            <ion-icon
+              aria-hidden="true"
+              slot="start"
+              [ios]="appDashboard.icon + '-outline'"
+              [md]="appDashboard.icon + '-sharp'"
+            ></ion-icon>
+            <ion-label>{{ appDashboard.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list id="inbox-list">
+        <ion-menu-toggle
+          auto-hide="false"
+          *ngFor="let p of appPages; let i = index"
+        >
+          <ion-item
+            routerDirection="root"
+            [routerLink]="[p.url]"
+            lines="none"
+            detail="false"
+            routerLinkActive="selected"
+          >
+            <ion-icon
+              aria-hidden="true"
+              slot="start"
+              [ios]="p.icon + '-outline'"
+              [md]="p.icon + '-sharp'"
+            ></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list id="labels-list">
+        <ion-list-header>Configurações</ion-list-header>
+        <ion-menu-toggle
+          auto-hide="false"
+          *ngFor="let label of labels"
+          menu="first"
+        >
+          <ion-item lines="none">
+            <div class="toggleThemeContent">
+              <ion-icon
+                aria-hidden="true"
+                slot="start"
+                [ios]="getTheme() === 'dark' ? 'sunny-outline' : 'moon-outline'"
+                [md]="getTheme() === 'dark' ? 'sunny-outline' : 'moon-outline'"
+              ></ion-icon>
+              <ion-label>Modo Escuro</ion-label>
+            </div>
+
+            <ion-toggle
+              aria-label="Modo Escuro"
+              (ionChange)="toggleDarkMode()"
+              [checked]="!isDarkMode"
+              slot="end"
+            ></ion-toggle>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

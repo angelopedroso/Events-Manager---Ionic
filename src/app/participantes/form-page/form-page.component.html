@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ createMode ? "Cadastro " : "Edição " }} de Participante
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="participanteForm">
+    <ion-list>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="Nome*"
+          labelPlacement="floating"
+          fill="outline"
+          formControlName="nome"
+          placeholder="Digite o nome do participante responsável"
+        ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="Sobrenome*"
+          labelPlacement="floating"
+          fill="outline"
+          formControlName="sobrenome"
+          placeholder="Digite o nome da empresa"
+        ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="E-mail*"
+          labelPlacement="floating"
+          fill="outline"
+          type="email"
+          formControlName="email"
+          placeholder="Digite o e-mail"
+        ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          type="tel"
+          label="Telefone*"
+          labelPlacement="floating"
+          fill="outline"
+          placeholder="(00)00000-0000"
+          formControlName="telefone"
+          appMask="(**)9****-****"
+          maxlength="14"
+        ></ion-input>
+        <ion-note
+          color="danger"
+          *ngIf="participanteForm.controls['telefone'].hasError('required')"
+        >
+          O campo é obrigatório
+        </ion-note>
+        <ion-note
+          color="danger"
+          *ngIf="participanteForm.controls['telefone'].hasError('invalidPhone')"
+        >
+          Telefone inválido
+        </ion-note>
+      </ion-item-group>
+    </ion-list>
+    <ion-button
+      type="submit"
+      expand="block"
+      size="large"
+      shape="round"
+      color="primary"
+      (click)="save()"
+      [disabled]="!participanteForm.valid"
+      >{{ !editLabel ? "Adicionar" : "Editar" }}
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ createMode ? "Cadastro " : "Edição " }} de Organizador
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="organizadorForm">
+    <ion-list>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="Empresa"
+          labelPlacement="floating"
+          fill="outline"
+          formControlName="nomeEmpresa"
+          placeholder="Digite o nome da empresa"
+          aria-labelledby="nomeEmpresa"
+        ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="Nome*"
+          labelPlacement="floating"
+          fill="outline"
+          formControlName="nomeResponsavel"
+          placeholder="Digite o nome do organizador responsável"
+        ></ion-input>
+        <ion-note
+          color="danger"
+          *ngIf="
+            organizadorForm.controls['nomeResponsavel'].hasError('required')
+          "
+        >
+          O campo é obrigatório
+        </ion-note>
+        <ion-note
+          color="danger"
+          *ngIf="
+            organizadorForm.controls['nomeResponsavel'].hasError('minlength')
+          "
+        >
+          O campo deve ter no mínimo
+          {{organizadorForm.controls['nomeResponsavel'].errors?.['minlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          color="danger"
+          *ngIf="
+            organizadorForm.controls['nomeResponsavel'].hasError('maxlength')
+          "
+        >
+          O campo deve ter no máximo
+          {{organizadorForm.controls['nomeResponsavel'].errors?.['maxlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          color="danger"
+          *ngIf="
+            organizadorForm.controls['nomeResponsavel'].hasError('invalidName')
+          "
+        >
+          Nome inválido
+        </ion-note>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="E-mail*"
+          labelPlacement="floating"
+          fill="outline"
+          type="email"
+          formControlName="email"
+          placeholder="Digite o e-mail"
+        ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          type="tel"
+          label="Telefone*"
+          labelPlacement="floating"
+          fill="outline"
+          placeholder="(00)00000-0000"
+          formControlName="telefone"
+          appMask="(**)9****-****"
+          maxlength="14"
+        ></ion-input>
+      </ion-item-group>
+    </ion-list>
+    <ion-button
+      type="submit"
+      expand="block"
+      size="large"
+      shape="round"
+      color="primary"
+      (click)="save()"
+      [disabled]="!organizadorForm.valid"
+      >{{ !editLabel ? "Adicionar" : "Editar" }}
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,101 @@
+{
+  "organizadores": [
+    {
+      "id": 1,
+      "nomeEmpresa": "Fatec",
+      "nomeResponsavel": "Organizador 1",
+      "email": "organizador1@exemplo.com",
+      "telefone": "(11) 1234-5678",
+      "endereco": "Rua Exemplo, 123 - São Paulo/SP"
+    },
+    {
+      "id": 2,
+      "nomeEmpresa": "Fatec",
+      "nomeResponsavel": "Organizador 2",
+      "email": "organizador2@exemplo.com",
+      "telefone": "(11) 2345-6789",
+      "endereco": "Avenida Teste, 456 - São Paulo/SP"
+    },
+    {
+      "id": 3,
+      "nomeEmpresa": "Fatec",
+      "nomeResponsavel": "Organizador 3",
+      "email": "organizador3@exemplo.com",
+      "telefone": "(11) 3456-7890",
+      "endereco": "Rua de Teste, 789 - São Paulo/SP"
+    },
+    {
+      "nomeResponsavel": "Augusto F",
+      "nomeEmpresa": "Ion",
+      "telefone": "(42)42422-4442",
+      "email": "4444444444@gmail.com",
+      "id": 4
+    }
+  ],
+  "participantes": [
+    {
+      "id": 1,
+      "nome": "Participante 1",
+      "email": "participante1@exemplo.com",
+      "telefone": "(11) 1234-5678",
+      "endereco": "Rua Exemplo, 123 - São Paulo/SP"
+    },
+    {
+      "id": 2,
+      "nome": "Participante 2",
+      "email": "participante2@exemplo.com",
+      "telefone": "(11) 2345-6789",
+      "endereco": "Avenida Teste, 456 - São Paulo/SP"
+    },
+    {
+      "id": 3,
+      "nome": "Participante 3",
+      "email": "participante3@exemplo.com",
+      "telefone": "(11) 3456-7890",
+      "endereco": "Rua de Teste, 789 - São Paulo/SP"
+    },
+    {
+      "nome": "Angelo",
+      "sobrenome": "Pedroso",
+      "telefone": "(51)95564-5451",
+      "email": "546456@gmail.com",
+      "id": 4
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "nome": "Evento 1",
+      "descricao": "Descrição do evento 1",
+      "data": "2023-05-01",
+      "hora": "14:00",
+      "local": "Local do evento 1",
+      "organizadorId": 1,
+      "participantes": [
+        {
+          "participanteId": 1
+        },
+        {
+          "participanteId": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Evento 2",
+      "descricao": "Descrição do evento 2",
+      "data": "2023-06-01",
+      "hora": "16:00",
+      "local": "Local do evento 2",
+      "organizadorId": 2,
+      "participantes": [
+        {
+          "participanteId": 1
+        },
+        {
+          "participanteId": 3
+        }
+      ]
+    }
+  ]
+}

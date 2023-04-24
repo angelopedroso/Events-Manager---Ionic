@@ -1,0 +1,27 @@
+<h1 class="mt-3">Livros</h1>
+<hr>
+<ol>
+    <li *ngFor="let livro of livros">
+        <p>
+            {{livro.nome | uppercase}} - <em>{{livro.autor}}</em>
+        </p>
+        <p *ngIf="livro.preco || livro.publicacao">
+
+            <strong *ngIf="livro.preco">
+                Preço: {{livro.preco | currency: 'R$'}}
+            </strong>
+            
+            {{ livro.preco && livro.publicacao ? '-' : ''}}
+            <!-- <span *ngIf=""> - </span> -->
+
+            <em *ngIf="livro.publicacao">
+                Data de publicação:
+                {{ livro.publicacao | date:'dd/MM/YY'}}
+            </em>
+        </p>
+        <p>
+            <button class="btn btn-warning" [routerLink]="['/edicao', livro.id]">Editar</button>
+            <button class="btn btn-danger ms-1" (click)="remove(livro)">Excluir</button>
+        </p>
+    </li>
+</ol>
