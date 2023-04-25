@@ -159,7 +159,7 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
                 hora: evento.hora,
                 endereco: evento.endereco,
                 organizadorId: evento.organizadorId,
-                participantesId: evento.participanteId,
+                participantes: evento.participantes,
               },
               editLabel: true,
             },

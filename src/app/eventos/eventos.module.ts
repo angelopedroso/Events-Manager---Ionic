@@ -12,6 +12,8 @@ import { FormPageComponent } from './form-page/form-page.component';
 import { DirectivesModule } from '@starley/ion-directives';
 import { EventoService } from './services/evento.service';
 import { OrganizadorService } from '../organizadores/services/organizador.service';
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+import { ParticipanteService } from '../participantes/services/participante.service';
 
 @NgModule({
   imports: [
@@ -22,9 +24,10 @@ import { OrganizadorService } from '../organizadores/services/organizador.servic
     ReactiveFormsModule,
     EventosPageRoutingModule,
     FormPageComponent,
+    ModalComponentComponent,
     DirectivesModule,
   ],
   declarations: [EventosPage],
-  providers: [EventoService, OrganizadorService],
+  providers: [EventoService, OrganizadorService, ParticipanteService],
 })
 export class EventosPageModule {}

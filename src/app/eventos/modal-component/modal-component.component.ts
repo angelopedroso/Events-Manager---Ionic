@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectivesModule } from '@starley/ion-directives';
 import { EventoInterface } from '../types/evento.interface';
+import { ParticipanteService } from 'src/app/participantes/services/participante.service';
+import { ParticipanteInterface } from 'src/app/participantes/types/participante.interface';
 
 @Component({
   selector: 'app-modal-component-page',
@@ -36,7 +38,7 @@ import { EventoInterface } from '../types/evento.interface';
     DirectivesModule,
   ],
 })
-export class FormPageComponent implements OnInit, OnDestroy {
+export class ModalComponentComponent implements OnInit, OnDestroy {
   @Input() valores!: EventoInterface;
   @Input() editLabel: boolean = false;
 
@@ -45,11 +47,14 @@ export class FormPageComponent implements OnInit, OnDestroy {
   createMode: boolean = false;
   editMode: boolean = false;
   id!: number;
+  eventos!: number[];
+  participantsInEvent!: ParticipanteInterface[];
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private eventoService: EventoService,
+    private participanteService: ParticipanteService,
     private alertController: AlertController,
     private modalController: ModalController,
     private toastController: ToastController
@@ -102,6 +107,26 @@ export class FormPageComponent implements OnInit, OnDestroy {
     //   telefone: ['', [Validators.required, this.phoneValidator()]],
     //   email: ['', [Validators.required, Validators.email]],
     // });
+
+    this.eventoService.getEvento(1).subscribe({
+      next: (evento) => {
+        this.eventos = evento.participantes.map((ep) => ep.participanteId);
+
+        this.participanteService.getParticipantes().subscribe({
+          next: (participante) => {
+            this.participantsInEvent = participante
+              .filter((p) => {
+                if (this.eventos.includes(p.id)) {
+                  return p;
+                }
+
+                return null;
+              })
+              .filter((participanteEmpty) => participanteEmpty !== null);
+          },
+        });
+      },
+    });
   }
 
   phoneValidator(): ValidatorFn {

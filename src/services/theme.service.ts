@@ -15,7 +15,7 @@ export class ThemeService {
   }
 
   public toggleDarkMode(theme: string): void {
-    localStorage.setItem('isDarkMode', String(this._darkMode.value));
+    localStorage.setItem('@eventManager:isDarkMode', String(this._darkMode.value));
 
     this.renderer.setAttribute(document.body, 'color-theme', theme);
 

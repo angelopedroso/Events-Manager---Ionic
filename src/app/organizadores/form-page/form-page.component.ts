@@ -42,8 +42,6 @@ export class FormPageComponent implements OnInit, OnDestroy {
 
   organizadorForm!: FormGroup;
   subscription = new Subscription();
-  createMode: boolean = false;
-  editMode: boolean = false;
   id!: number;
 
   constructor(

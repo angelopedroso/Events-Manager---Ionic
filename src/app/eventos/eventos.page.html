@@ -33,14 +33,14 @@
     </ion-grid>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button [routerLink]="['../cadastro']">
+    <ion-fab-button id="modalC">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-modal #modalComponent cssClass="inline_modal">
+  <ion-modal #modalComponent trigger="modalC" cssClass="inline_modal">
     <ng-template>
-      <app-form-page></app-form-page>
+      <app-modal-component-page></app-modal-component-page>
     </ng-template>
   </ion-modal>
 </ion-content>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      {{ createMode ? "Cadastro " : "Edição " }} de Organizador
+      {{ !editLabel ? "Cadastro " : "Edição " }} de Organizador
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="fecharModal()">Fechar</ion-button>

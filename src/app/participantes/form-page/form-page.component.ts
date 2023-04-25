@@ -43,7 +43,6 @@ export class FormPageComponent implements OnInit, OnDestroy {
   participanteForm!: FormGroup;
   subscription = new Subscription();
   createMode: boolean = false;
-  editMode: boolean = false;
   id!: number;
 
   constructor(
@@ -82,7 +81,7 @@ export class FormPageComponent implements OnInit, OnDestroy {
       });
       return;
     }
-
+    
     this.participanteForm = this.formBuilder.group({
       nome: [
         '',

@@ -1,7 +1,7 @@
 export interface EventoInterface {
   id?: number;
-  organizadorId?: number;
-  participanteId?: number[];
+  organizadorId: number;
+  participantes: {participanteId: number}[];
   nome: string;
   descricao?: string;
   data: string;

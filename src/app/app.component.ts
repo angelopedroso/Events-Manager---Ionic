@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       this.isDarkMode = isDarkMode;
     });
 
-    if (localStorage.getItem('isDarkMode') === 'true') {
+    if (localStorage.getItem('@eventManager:isDarkMode') === 'true') {
       this._themeService.toggleDarkMode('dark');
     }
   }
