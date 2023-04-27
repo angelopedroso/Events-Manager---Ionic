@@ -55,6 +55,7 @@
                 formControlName="organizadorId"
                 label="Organizador*"
                 label-placement="floating"
+                cancelText="Cancelar"
               >
                 <ion-select-option
                   *ngFor="let organizador of organizadores"
@@ -80,7 +81,7 @@
           </ion-list>
         </ion-col>
         <ion-col size="4">
-          <ion-list formArrayName="participantes">
+          <div formArrayName="participantes" class="scrollableContainer">
             <ion-label>Participantes</ion-label>
             <ion-item
               *ngFor="let participante of formArray?.controls; let i = index"
@@ -89,17 +90,17 @@
                 participantes[i].nome
               }}</ion-checkbox>
             </ion-item>
-            <ion-note
-              color="danger"
-              *ngIf="
-                eventoForm.controls['participantes'].hasError(
-                  'invalidParticipante'
-                )
-              "
-            >
-              Selecione ao menos um participante.
-            </ion-note>
-          </ion-list>
+          </div>
+          <ion-note
+            color="danger"
+            *ngIf="
+              eventoForm.controls['participantes'].hasError(
+                'invalidParticipante'
+              )
+            "
+          >
+            Selecione ao menos um participante.
+          </ion-note>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -117,7 +118,7 @@
       size="large"
       shape="round"
       color="danger"
-      (click)="save()"
+      (click)="remove(valores)"
     >
       Excluir Evento
     </ion-button>

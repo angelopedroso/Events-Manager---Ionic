@@ -60,6 +60,13 @@
       "telefone": "(51)95564-5451",
       "email": "546456@gmail.com",
       "id": 4
+    },
+    {
+      "nome": "Rogerson",
+      "sobrenome": "Pereira",
+      "telefone": "(48)95165-5645",
+      "email": "apodsopsop@gmail.com",
+      "id": 5
     }
   ],
   "eventos": [
@@ -139,20 +146,6 @@
         }
       ],
       "id": 4
-    },
-    {
-      "nome": "Teste",
-      "descricao": "",
-      "endereco": "TESTE 12345 SDDF",
-      "data": "2023-04-30",
-      "hora": "20:00",
-      "organizadorId": 1,
-      "participantes": [
-        {
-          "participanteId": 1
-        }
-      ],
-      "id": 5
     }
   ]
 }

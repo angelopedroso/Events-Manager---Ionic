@@ -264,6 +264,27 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
     }
   }
 
+  async remove(evento: EventoInterface) {
+    const alert = await this.alertController.create({
+      header: 'Confirmação de exclusão',
+      message: `Deseja excluir o evento ${evento.nome}?`,
+      buttons: [
+        {
+          text: 'Sim',
+          handler: () => {
+            this.subscription.add(
+              this.eventoService.remove(evento).subscribe(() => {
+                this.fecharModal();
+              })
+            );
+          },
+        },
+        'Não',
+      ],
+    });
+    alert.present();
+  }
+
   fecharModal() {
     this.modalController.dismiss();
   }
