@@ -4,4 +4,5 @@ export interface OrganizadorInterface {
   nomeResponsavel: string;
   email: string;
   telefone: string;
+  cpf: string;
 }

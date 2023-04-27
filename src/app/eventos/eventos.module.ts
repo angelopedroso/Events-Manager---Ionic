@@ -8,7 +8,6 @@ import { EventosPageRoutingModule } from './eventos-routing.module';
 
 import { EventosPage } from './eventos.page';
 import { HttpClientModule } from '@angular/common/http';
-import { FormPageComponent } from './form-page/form-page.component';
 import { DirectivesModule } from '@starley/ion-directives';
 import { EventoService } from './services/evento.service';
 import { OrganizadorService } from '../organizadores/services/organizador.service';
@@ -23,7 +22,6 @@ import { ParticipanteService } from '../participantes/services/participante.serv
     FormsModule,
     ReactiveFormsModule,
     EventosPageRoutingModule,
-    FormPageComponent,
     ModalComponentComponent,
     DirectivesModule,
   ],

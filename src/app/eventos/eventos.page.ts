@@ -6,13 +6,11 @@ import {
   ModalController,
   ToastController,
   ViewDidLeave,
-  ViewWillEnter,
 } from '@ionic/angular';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { EventoService } from './services/evento.service';
 import { EventoInterface } from './types/evento.interface';
 import { Router } from '@angular/router';
-import { FormPageComponent } from './form-page/form-page.component';
 import { OrganizadorService } from '../organizadores/services/organizador.service';
 import { OrganizadorInterface } from '../organizadores/types/organizador.interface';
 import { ModalComponentComponent } from './modal-component/modal-component.component';
@@ -33,7 +31,6 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
     private organizadorService: OrganizadorService,
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private toastController: ToastController,
     private router: Router,
     private animationCtrl: AnimationController,
     public modalController: ModalController

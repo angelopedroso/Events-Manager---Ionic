@@ -4,4 +4,5 @@ export interface ParticipanteInterface {
   sobrenome: string;
   email: string;
   telefone: string;
+  genero: 'Masculino' | 'Feminino';
 }

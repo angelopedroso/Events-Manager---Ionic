@@ -18,7 +18,7 @@
           labelPlacement="floating"
           fill="outline"
           formControlName="nomeEmpresa"
-          placeholder="Digite o nome da empresa"
+          placeholder="Informe o nome da empresa"
           aria-labelledby="nomeEmpresa"
         ></ion-input>
       </ion-item-group>
@@ -28,7 +28,7 @@
           labelPlacement="floating"
           fill="outline"
           formControlName="nomeResponsavel"
-          placeholder="Digite o nome do organizador responsável"
+          placeholder="Informe o nome do organizador responsável"
         ></ion-input>
         <ion-note
           color="danger"
@@ -74,7 +74,7 @@
           fill="outline"
           type="email"
           formControlName="email"
-          placeholder="Digite o e-mail"
+          placeholder="Informe o e-mail"
         ></ion-input>
       </ion-item-group>
       <ion-item-group class="ion-padding-horizontal ion-margin">
@@ -88,6 +88,24 @@
           appMask="(**)9****-****"
           maxlength="14"
         ></ion-input>
+      </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-input
+          label="CPF"
+          labelPlacement="floating"
+          fill="outline"
+          type="text"
+          formControlName="cpf"
+          appMask="***.***.***-**"
+          maxlength="14"
+          placeholder="Informe o CPF"
+        ></ion-input>
+        <ion-note
+          color="danger"
+          *ngIf="organizadorForm.controls['cpf'].hasError('invalidCpf')"
+        >
+          Informe um CPF válido.
+        </ion-note>
       </ion-item-group>
     </ion-list>
     <ion-button

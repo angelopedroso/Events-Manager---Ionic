@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EventosPage } from './eventos.page';
-import { FormPageComponent } from './form-page/form-page.component';
 
 const routes: Routes = [
   {
@@ -13,14 +12,6 @@ const routes: Routes = [
   {
     path: 'lista',
     component: EventosPage,
-  },
-  {
-    path: 'cadastro',
-    component: FormPageComponent,
-  },
-  {
-    path: 'edicao/:id',
-    component: FormPageComponent,
   },
 ];
 

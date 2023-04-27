@@ -149,6 +149,7 @@ export class OrganizadoresPage
                 nomeEmpresa: organizador.nomeEmpresa || '',
                 telefone: organizador.telefone,
                 email: organizador.email,
+                cpf: organizador.cpf,
               },
               editLabel: true,
             },

@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectivesModule } from '@starley/ion-directives';
 import { OrganizadorInterface } from '../types/organizador.interface';
+import { cpfValidator, validateNameInput } from '../utils/validationForm';
 
 @Component({
   selector: 'app-organizador-form-page',
@@ -62,12 +63,13 @@ export class FormPageComponent implements OnInit, OnDestroy {
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(50),
-            this.validateNameInput(),
+            validateNameInput(),
           ],
         ],
         nomeEmpresa: this.valores.nomeEmpresa,
         telefone: [this.valores.telefone, [Validators.required]],
         email: [this.valores.email, [Validators.required, Validators.email]],
+        cpf: [this.valores.cpf, [Validators.minLength(14)]],
       });
       return;
     }
@@ -79,28 +81,14 @@ export class FormPageComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(50),
-          this.validateNameInput(),
+          validateNameInput(),
         ],
       ],
       nomeEmpresa: '',
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      cpf: ['', [Validators.minLength(14), cpfValidator()]],
     });
-  }
-
-  validateNameInput(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const name = control.value;
-      if (name.trim().length === 0) {
-        return null;
-      }
-
-      const namePattern = /^[a-zA-Z\u00C7\u00E7\s]*$/;
-      if (control.value && !namePattern.test(control.value)) {
-        return { invalidName: true };
-      }
-      return null;
-    };
   }
 
   ngOnDestroy(): void {
