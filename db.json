@@ -69,7 +69,7 @@
       "descricao": "Descrição do evento 1",
       "data": "2023-05-01",
       "hora": "14:00",
-      "local": "Local do evento 1",
+      "endereco": "Local do evento 1",
       "organizadorId": 1,
       "participantes": [
         {
@@ -81,12 +81,11 @@
       ]
     },
     {
-      "id": 2,
       "nome": "Evento 2",
-      "descricao": "Descrição do evento 2",
-      "data": "2023-06-01",
+      "descricao": "Descrição do evento 2. ALELUIA",
+      "endereco": "Local do evento 2",
+      "data": "2023-06-10",
       "hora": "16:00",
-      "local": "Local do evento 2",
       "organizadorId": 2,
       "participantes": [
         {
@@ -94,8 +93,66 @@
         },
         {
           "participanteId": 3
+        },
+        {
+          "participanteId": 4
         }
-      ]
+      ],
+      "id": 2
+    },
+    {
+      "nome": "Projeto X",
+      "descricao": "A festa mais bombada do planeta!",
+      "endereco": "Rua Teste 123 - Sao Paulo/SP",
+      "data": "2023-04-29",
+      "hora": "23:30",
+      "organizadorId": "4",
+      "participantes": [
+        {
+          "participanteId": 1
+        },
+        {
+          "participanteId": 2
+        },
+        {
+          "participanteId": 3
+        },
+        {
+          "participanteId": 4
+        }
+      ],
+      "id": 3
+    },
+    {
+      "nome": "Iron Berg",
+      "descricao": "Botar um shape maneiro",
+      "endereco": "Avenida Teste 123 - São Paulo/SP",
+      "data": "2023-05-26",
+      "hora": "15:30",
+      "organizadorId": 3,
+      "participantes": [
+        {
+          "participanteId": 1
+        },
+        {
+          "participanteId": 4
+        }
+      ],
+      "id": 4
+    },
+    {
+      "nome": "Teste",
+      "descricao": "",
+      "endereco": "TESTE 12345 SDDF",
+      "data": "2023-04-30",
+      "hora": "20:00",
+      "organizadorId": 1,
+      "participantes": [
+        {
+          "participanteId": 1
+        }
+      ],
+      "id": 5
     }
   ]
 }

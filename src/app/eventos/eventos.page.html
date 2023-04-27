@@ -12,7 +12,7 @@
     <ion-grid>
       <ion-row>
         <ion-col *ngFor="let evento of eventos">
-          <div class="container" [routerLink]="['../edicao', evento.id]">
+          <div class="container" (click)="handleEditEvento(evento.id)">
             <ion-card class="card">
               <div class="lines"></div>
               <div class="imgBx">
@@ -24,6 +24,10 @@
                 </ion-card-header>
                 <ion-card-content>
                   <p>{{getOrganizadorName(evento.organizadorId)}}</p>
+                  <div class="datahora">
+                    <p>{{evento.data | date: 'dd/MM/yyyy'}}</p>
+                    <p>{{evento.hora}}</p>
+                  </div>
                 </ion-card-content>
               </div>
             </ion-card>
@@ -33,12 +37,12 @@
     </ion-grid>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button id="modalC">
+    <ion-fab-button (click)="openModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-modal #modalComponent trigger="modalC" cssClass="inline_modal">
+  <ion-modal #modalComponent>
     <ng-template>
       <app-modal-component-page></app-modal-component-page>
     </ng-template>

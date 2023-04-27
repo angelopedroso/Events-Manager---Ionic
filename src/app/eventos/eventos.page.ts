@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { FormPageComponent } from './form-page/form-page.component';
 import { OrganizadorService } from '../organizadores/services/organizador.service';
 import { OrganizadorInterface } from '../organizadores/types/organizador.interface';
+import { ModalComponentComponent } from './modal-component/modal-component.component';
 
 @Component({
   selector: 'app-evento-list-page',
@@ -132,9 +133,10 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
 
   async openModal() {
     const modal = await this.modalController.create({
-      component: FormPageComponent,
+      component: ModalComponentComponent,
       enterAnimation: this.enterAnimation,
       leaveAnimation: this.leaveAnimation,
+      cssClass: ['inline_modal'],
     });
 
     modal.onWillDismiss().then(async () => {
@@ -149,7 +151,7 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
       this.eventoService.getEvento(id).subscribe({
         next: async (evento) => {
           const modal = await this.modalController.create({
-            component: FormPageComponent,
+            component: ModalComponentComponent,
             componentProps: {
               valores: {
                 id: id,
@@ -165,6 +167,7 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
             },
             enterAnimation: this.enterAnimation,
             leaveAnimation: this.leaveAnimation,
+            cssClass: ['inline_modal'],
           });
 
           modal.onWillDismiss().then(async () => {
@@ -206,8 +209,9 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
 
   getOrganizadorName(organizadorId: number | undefined): string {
     return (
-      this.organizadores.find((organizador) => organizador.id === organizadorId)
-        ?.nomeResponsavel || 'Organizador não identificado'
+      this.organizadores.find(
+        (organizador) => Number(organizador.id) === Number(organizadorId)
+      )?.nomeResponsavel || 'Organizador não identificado'
     );
   }
 }

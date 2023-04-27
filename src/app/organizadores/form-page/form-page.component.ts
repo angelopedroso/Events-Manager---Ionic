@@ -90,6 +90,11 @@ export class FormPageComponent implements OnInit, OnDestroy {
 
   validateNameInput(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
+      const name = control.value;
+      if (name.trim().length === 0) {
+        return null;
+      }
+
       const namePattern = /^[a-zA-Z\u00C7\u00E7\s]*$/;
       if (control.value && !namePattern.test(control.value)) {
         return { invalidName: true };

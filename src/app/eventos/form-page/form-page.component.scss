@@ -1,0 +1,55 @@
+ion-content {
+  ion-datetime-button {
+    width: fit-content;
+    margin-top: 6px;
+
+    &::part(native) {
+      background: var(--ion-color-primary);
+      color: var(--ion-color-dark);
+    }
+  }
+
+  ion-grid {
+    padding: 0;
+    height: 100%;
+
+    ion-row {
+      height: 100%;
+
+      ion-col {
+        background: var(--ion-background-color);
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        form {
+          flex-basis: 90%;
+        }
+
+        form,
+        ion-list {
+          background: var(--ion-background-color);
+
+          ion-textarea {
+            height: 10rem;
+          }
+        }
+
+        .button-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-button {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+}
+
+ion-datetime {
+  color: var(--ion-color-dark);
+}

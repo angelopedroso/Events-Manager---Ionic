@@ -1,6 +1,4 @@
 ion-content {
-  height: 100vh;
-
   ion-list {
     background-color: var(--ion-background-color);
 
@@ -77,6 +75,21 @@ ion-content {
 
         ion-card-header {
           padding-bottom: 2px;
+        }
+
+        ion-card-content {
+          width: 100%;
+
+          p {
+            text-align: center;
+            margin-bottom: 8px;
+          }
+
+          .datahora {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
         }
       }
     }

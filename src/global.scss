@@ -22,6 +22,14 @@
   box-shadow: none !important;
 }
 
+.inline_modal {
+  --width: fit-content;
+  --min-width: 60rem;
+  --height: 37.5rem;
+  --border-radius: 5px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
