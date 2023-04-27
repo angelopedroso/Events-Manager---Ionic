@@ -64,6 +64,17 @@
           Telefone inválido
         </ion-note>
       </ion-item-group>
+      <ion-item-group class="ion-padding-horizontal ion-margin">
+        <ion-select
+          formControlName="genero"
+          label="Gênero*"
+          label-placement="floating"
+          cancelText="Cancelar"
+        >
+          <ion-select-option value="Masculino">Masculino</ion-select-option>
+          <ion-select-option value="Feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item-group>
     </ion-list>
     <ion-button
       type="submit"

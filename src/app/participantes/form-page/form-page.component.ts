@@ -78,10 +78,11 @@ export class FormPageComponent implements OnInit, OnDestroy {
           [Validators.required, this.phoneValidator()],
         ],
         email: [this.valores.email, [Validators.required, Validators.email]],
+        genero: [this.valores.genero, [Validators.required]],
       });
       return;
     }
-    
+
     this.participanteForm = this.formBuilder.group({
       nome: [
         '',
@@ -101,6 +102,7 @@ export class FormPageComponent implements OnInit, OnDestroy {
       ],
       telefone: ['', [Validators.required, this.phoneValidator()]],
       email: ['', [Validators.required, Validators.email]],
+      genero: ['', [Validators.required]],
     });
   }
 

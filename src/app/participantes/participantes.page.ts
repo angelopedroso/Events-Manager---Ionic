@@ -149,6 +149,7 @@ export class ParticipantesPage
                 sobrenome: participante.sobrenome || '',
                 telefone: participante.telefone,
                 email: participante.email,
+                genero: participante.genero,
               },
               editLabel: true,
             },

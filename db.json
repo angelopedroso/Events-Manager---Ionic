@@ -75,6 +75,14 @@
       "telefone": "(48)95165-5645",
       "email": "apodsopsop@gmail.com",
       "id": 5
+    },
+    {
+      "nome": "Diego ",
+      "sobrenome": "Fernandes",
+      "telefone": "(47)95645-6564",
+      "email": "asdlknfkl@gmil.com",
+      "genero": "Masculino",
+      "id": 6
     }
   ],
   "eventos": [
