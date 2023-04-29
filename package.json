@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "concurrently \"json-server --watch db.json\" \"ionic serve\"",
+    "build": "concurrently \"ng build\" \"json-server --watch db.json\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
