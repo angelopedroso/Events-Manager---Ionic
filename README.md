@@ -1,6 +1,6 @@
 # Gerenciador de Eventos
 
-Este é um projeto de um aplicativo de gerenciamento de eventos desenvolvido com Ionic e Angular. O aplicativo permite realizar operações de CRUD (Create, Read, Update, Delete) para Organizadores, Eventos e Participantes. Ele também possui uma funcionalidade de modo escuro que é salva no local storage.
+Este é um projeto de um aplicativo de gerenciamento de eventos desenvolvido com Ionic e Angular. O aplicativo permite realizar operações de CRUD (Create, Read, Update, Delete) para Organizadores, Eventos e Participantes. Ele também possui uma funcionalidade de modo escuro que é salva no local storage, além de gráficos utilizando ChartsJS.
 
 O projeto usa o json-server para armazenar os dados em um arquivo JSON, que é acessado através de uma API RESTful. O json-server é uma biblioteca simples que cria uma API RESTful para testes rápidos.
 
@@ -51,6 +51,7 @@ O projeto usa o json-server para armazenar os dados em um arquivo JSON, que é a
 - SCSS
 - ngx-mask
 - json-server
+- Charts.js
 
 ## Contribuindo
 
