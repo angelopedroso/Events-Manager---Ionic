@@ -10,7 +10,7 @@
 
   <ion-content>
     <ion-grid>
-      <ion-row class="mainRowContainer">
+      <ion-row class="cardRowContainer">
         <ion-col>
           <ion-card class="participanteCardContainer">
             <ion-grid>
@@ -71,6 +71,22 @@
                 </ion-col>
               </ion-row>
             </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="9">
+          <ion-card>
+            <ion-card-content>
+              <canvas #graficoParticipantesEvento></canvas>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="3">
+          <ion-card>
+            <ion-card-content>
+              <canvas #graficoSlaoq></canvas>
+            </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>

@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { EventoService } from '../eventos/services/evento.service';
-import { EventoInterface } from '../eventos/types/evento.interface';
 import { OrganizadorService } from '../organizadores/services/organizador.service';
 import { AlertController } from '@ionic/angular';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +16,27 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  eventoParticipantes: number = 0;
-  totalEventos: number = 0;
-  totalOrganizadores: number = 0;
+  @ViewChild('graficoParticipantesEvento')
+  graficoPE!: ElementRef;
+  @ViewChild('graficoSlaoq', { static: true })
+  graficoQ!: ElementRef;
+
+  primaryColor = getComputedStyle(document.body).getPropertyValue(
+    '--ion-color-primary'
+  );
+
+  eventoParticipantes = 0;
+  eventoParticipantesPorEvento: number[] = [];
+  nomeEventos: string[] = [];
+  totalEventos = 0;
+  totalOrganizadores = 0;
 
   constructor(
     private eventoService: EventoService,
     private organizadorService: OrganizadorService,
     private alertController: AlertController
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.eventoService.getEventos().subscribe({
       next: (evento) => {
         this.eventoParticipantes = evento.reduce((prev, next) => {
@@ -26,6 +44,16 @@ export class HomePage implements OnInit {
         }, 0);
 
         this.totalEventos = evento.length;
+
+        this.eventoParticipantesPorEvento = evento.map((p) => {
+          return p.participantes.length;
+        });
+
+        this.nomeEventos = evento.map((p) => {
+          return p.nome;
+        });
+
+        this.graficoPartEmEventos();
       },
       error: async () => {
         const alerta = await this.alertController.create({
@@ -54,5 +82,27 @@ export class HomePage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  graficoPartEmEventos(): void {
+    new Chart(this.graficoPE.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.nomeEventos,
+        datasets: [
+          {
+            data: this.eventoParticipantesPorEvento,
+            borderColor: this.primaryColor,
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        responsive: true,
+      },
+    });
+  }
 }
