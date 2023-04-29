@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, map, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventoInterface } from '../types/evento.interface';
+import { OrganizadorInterface } from 'src/app/organizadores/types/organizador.interface';
 
 @Injectable()
 export class EventoService {
@@ -34,5 +35,61 @@ export class EventoService {
 
   remove({ id }: EventoInterface): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/eventos/${id}`);
+  }
+
+  getOrganizadoresMaisAtivos(): Observable<
+    { nome: string; quantidade: number }[]
+  > {
+    return this.http
+      .get<EventoInterface[]>(`${environment.apiUrl}/eventos`)
+      .pipe(
+        map((eventos) => {
+          const contagemOrganizadores: { [id: number]: number } = {};
+
+          eventos.forEach((evento) => {
+            const organizadorId = evento.organizadorId;
+            contagemOrganizadores[organizadorId] =
+              (contagemOrganizadores[organizadorId] || 0) + 1;
+          });
+
+          const idsOrganizadoresMaisAtivos = Object.keys(contagemOrganizadores)
+            .sort(
+              (id1, id2) =>
+                contagemOrganizadores[+id2] - contagemOrganizadores[+id1]
+            )
+            .slice(0, 3);
+
+          return idsOrganizadoresMaisAtivos.map((id) => {
+            const quantidade = contagemOrganizadores[+id];
+            return { id, quantidade };
+          });
+        }),
+        switchMap((organizadoresMaisAtivos) => {
+          const idsOrganizadores = organizadoresMaisAtivos.map(
+            (organizador) => organizador.id
+          );
+          const queryParams = `ids=${idsOrganizadores.join(',')}`;
+          return this.http
+            .get<OrganizadorInterface[]>(
+              `${environment.apiUrl}/organizadores?${queryParams}`
+            )
+            .pipe(
+              map((organizadores) => {
+                const organizadoresMap: { [id: number]: OrganizadorInterface } =
+                  {};
+                organizadores.forEach((organizador) => {
+                  organizadoresMap[organizador.id] = organizador;
+                });
+                return { organizadoresMaisAtivos, organizadoresMap };
+              })
+            );
+        }),
+        map(({ organizadoresMaisAtivos, organizadoresMap }) => {
+          return organizadoresMaisAtivos.map((organizador) => {
+            const nome = organizadoresMap[+organizador.id].nomeResponsavel;
+            return { nome, quantidade: organizador.quantidade };
+          });
+        })
+      );
   }
 }

@@ -234,6 +234,40 @@
         }
       ],
       "id": 7
+    },
+    {
+      "nome": "Bombastic",
+      "descricao": "",
+      "endereco": "Rua Gonçalves Alg - Rio de Janeiro/RJ",
+      "data": "2023-05-13",
+      "hora": "00:00",
+      "organizadorId": 5,
+      "participantes": [
+        {
+          "participanteId": 4
+        }
+      ],
+      "id": 8
+    },
+    {
+      "nome": "teste123",
+      "descricao": "",
+      "endereco": "fasdfsf",
+      "data": "2023-04-29",
+      "hora": "01:50",
+      "organizadorId": 4,
+      "participantes": [
+        {
+          "participanteId": 4
+        },
+        {
+          "participanteId": 5
+        },
+        {
+          "participanteId": 6
+        }
+      ],
+      "id": 9
     }
   ]
 }

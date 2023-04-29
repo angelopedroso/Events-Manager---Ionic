@@ -18,8 +18,8 @@ import { Chart } from 'chart.js/auto';
 export class HomePage implements OnInit {
   @ViewChild('graficoParticipantesEvento')
   graficoPE!: ElementRef;
-  @ViewChild('graficoSlaoq', { static: true })
-  graficoQ!: ElementRef;
+  @ViewChild('graficoOrgAtivos')
+  graficoOA!: ElementRef;
 
   primaryColor = getComputedStyle(document.body).getPropertyValue(
     '--ion-color-primary'
@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
   nomeEventos: string[] = [];
   totalEventos = 0;
   totalOrganizadores = 0;
+  topOrganizadoresAtivos!: { nome: string; quantidade: number }[];
 
   constructor(
     private eventoService: EventoService,
@@ -66,6 +67,13 @@ export class HomePage implements OnInit {
       },
     });
 
+    this.eventoService.getOrganizadoresMaisAtivos().subscribe({
+      next: (evento) => {
+        this.topOrganizadoresAtivos = evento;
+        this.graficoOrganizadoresAtivos();
+      },
+    });
+
     this.organizadorService.getOrganizadores().subscribe({
       next: (organizador) => {
         this.totalOrganizadores = organizador.length;
@@ -92,6 +100,7 @@ export class HomePage implements OnInit {
             data: this.eventoParticipantesPorEvento,
             borderColor: this.primaryColor,
             fill: false,
+            tension: 0.4,
           },
         ],
       },
@@ -101,6 +110,34 @@ export class HomePage implements OnInit {
             display: false,
           },
         },
+        scales: {
+          y: {
+            suggestedMin: 1,
+            ticks: {
+              precision: 0,
+            },
+          },
+        },
+        responsive: true,
+      },
+    });
+  }
+
+  graficoOrganizadoresAtivos(): void {
+    new Chart(this.graficoOA.nativeElement, {
+      type: 'doughnut',
+      data: {
+        labels: this.topOrganizadoresAtivos.map(({ nome }) => nome),
+        datasets: [
+          {
+            data: this.topOrganizadoresAtivos.map(
+              ({ quantidade }) => quantidade
+            ),
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
         responsive: true,
       },
     });

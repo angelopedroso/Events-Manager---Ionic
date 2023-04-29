@@ -11,16 +11,14 @@
   <ion-content>
     <ion-grid>
       <ion-row class="cardRowContainer">
-        <ion-col>
+        <ion-col sizeMd="4" sizeXs="12">
           <ion-card class="participanteCardContainer">
             <ion-grid>
               <ion-row>
                 <ion-col size="9">
                   <ion-card-header>
                     <ion-card-title>Total de participantes</ion-card-title>
-                    <ion-card-subtitle
-                      >cadastrado em evento(s)</ion-card-subtitle
-                    >
+                    <ion-card-subtitle>em evento(s)</ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
                     <span> {{eventoParticipantes}} </span>
@@ -33,7 +31,7 @@
             </ion-grid>
           </ion-card>
         </ion-col>
-        <ion-col>
+        <ion-col sizeMd="4" sizeXs="12">
           <ion-card class="eventoCardContainer">
             <ion-grid>
               <ion-row>
@@ -53,7 +51,7 @@
             </ion-grid>
           </ion-card>
         </ion-col>
-        <ion-col>
+        <ion-col sizeMd="4" sizeXs="12">
           <ion-card class="organizadorCardContainer">
             <ion-grid>
               <ion-row>
@@ -74,18 +72,24 @@
           </ion-card>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col size="9">
+      <ion-row class="graficoContainer">
+        <ion-col sizeXl="9" sizeLg="12" sizeMd="12" sizeSm="auto">
           <ion-card>
+            <ion-card-header>
+              <ion-card-title> Participantes por evento </ion-card-title>
+            </ion-card-header>
             <ion-card-content>
               <canvas #graficoParticipantesEvento></canvas>
             </ion-card-content>
           </ion-card>
         </ion-col>
-        <ion-col size="3">
+        <ion-col sizeXl="3" sizeLg="12" sizeMd="12" sizeSm="auto">
           <ion-card>
+            <ion-card-header>
+              <ion-card-title> Top organizadores ativos </ion-card-title>
+            </ion-card-header>
             <ion-card-content>
-              <canvas #graficoSlaoq></canvas>
+              <canvas #graficoOrgAtivos></canvas>
             </ion-card-content>
           </ion-card>
         </ion-col>
