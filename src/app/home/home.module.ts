@@ -7,14 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+import { EventoService } from '../eventos/services/evento.service';
+import { HttpClientModule } from '@angular/common/http';
+import { OrganizadorService } from '../organizadores/services/organizador.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    HttpClientModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [EventoService, OrganizadorService],
 })
 export class HomePageModule {}

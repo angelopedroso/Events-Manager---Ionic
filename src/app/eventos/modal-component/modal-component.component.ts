@@ -51,9 +51,10 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
   eventos!: number[];
   editMode: boolean = false;
   id!: number;
+  notDateEdited: boolean = true;
+
   actualDate: string = '';
   actualDateTime: string = '';
-
   dateTimeFormatted: string = '';
 
   organizadores: OrganizadorInterface[] = [];
@@ -194,6 +195,12 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
+    if (this.notDateEdited) {
+      const [data, hora] = this.actualDateTime.split('T');
+
+      this.eventoForm.patchValue({ data: data, hora: hora.slice(0, 5) });
+    }
+
     const selectedParticipanteIds = this.eventoForm.value.participantes
       .map((checked: boolean, index: number) =>
         checked ? { participanteId: this.participantes[index].id } : null
@@ -299,5 +306,7 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
     const [data, hora] = datahora.split('T');
 
     this.eventoForm.patchValue({ data: data, hora: hora.slice(0, 5) });
+
+    this.notDateEdited = false;
   }
 }

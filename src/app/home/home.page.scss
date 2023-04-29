@@ -1,0 +1,62 @@
+ion-content {
+  .mainRowContainer {
+    ion-col {
+      min-height: 7.3rem;
+    }
+  }
+
+  .participanteCardContainer {
+    border-left: 0.25rem solid var(--ion-color-tertiary);
+    ion-card-header {
+      ion-card-title {
+        --color: var(--ion-color-tertiary);
+      }
+    }
+  }
+  .organizadorCardContainer {
+    border-left: 0.25rem solid var(--ion-color-warning-shade);
+
+    ion-card-header {
+      ion-card-title {
+        --color: var(--ion-color-warning-shade);
+      }
+    }
+  }
+
+  ion-card {
+    border-left: 0.25rem solid var(--ion-color-secondary);
+
+    ion-card-header {
+      padding-bottom: 0.125rem;
+
+      ion-card-title {
+        text-transform: uppercase;
+        --color: var(--ion-color-secondary);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      ion-card-subtitle {
+        margin: 0;
+      }
+    }
+
+    ion-card-content {
+      span {
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+    }
+
+    .iconContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-icon {
+        width: 2rem;
+        height: 2rem;
+        color: var(--ion-color-medium-tint);
+      }
+    }
+  }
+}
