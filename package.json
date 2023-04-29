@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json --port $PORT"
   },
   "private": true,
   "dependencies": {
