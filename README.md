@@ -4,6 +4,10 @@ Este é um projeto de um aplicativo de gerenciamento de eventos desenvolvido com
 
 O projeto usa o json-server para armazenar os dados em um arquivo JSON, que é acessado através de uma API RESTful. O json-server é uma biblioteca simples que cria uma API RESTful para testes rápidos.
 
+## Demo
+
+Confira uma demonstração do aplicativo neste [link](https://events-manager-ionic.vercel.app) (read only).
+
 ## Instalação
 
 1. Clonar o repositório
