@@ -37,9 +37,9 @@ export class EventoService {
     return this.http.delete<void>(`${environment.apiUrl}/eventos/${id}`);
   }
 
-  getOrganizadoresMaisAtivos(): Observable<
-    { nome: string; quantidade: number }[]
-  > {
+  getOrganizadoresMaisAtivos(
+    top = 3
+  ): Observable<{ nome: string; quantidade: number }[]> {
     return this.http
       .get<EventoInterface[]>(`${environment.apiUrl}/eventos`)
       .pipe(
@@ -57,7 +57,7 @@ export class EventoService {
               (id1, id2) =>
                 contagemOrganizadores[+id2] - contagemOrganizadores[+id1]
             )
-            .slice(0, 3);
+            .slice(0, top);
 
           return idsOrganizadoresMaisAtivos.map((id) => {
             const quantidade = contagemOrganizadores[+id];
@@ -65,14 +65,8 @@ export class EventoService {
           });
         }),
         switchMap((organizadoresMaisAtivos) => {
-          const idsOrganizadores = organizadoresMaisAtivos.map(
-            (organizador) => organizador.id
-          );
-          const queryParams = `ids=${idsOrganizadores.join(',')}`;
           return this.http
-            .get<OrganizadorInterface[]>(
-              `${environment.apiUrl}/organizadores?${queryParams}`
-            )
+            .get<OrganizadorInterface[]>(`${environment.apiUrl}/organizadores`)
             .pipe(
               map((organizadores) => {
                 const organizadoresMap: { [id: number]: OrganizadorInterface } =

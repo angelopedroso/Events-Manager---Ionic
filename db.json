@@ -77,10 +77,10 @@
       "id": 5
     },
     {
-      "nome": "Diego ",
+      "nome": "Diego",
       "sobrenome": "Fernandes",
       "telefone": "(47)95645-6564",
-      "email": "asdlknfkl@gmil.com",
+      "email": "asdlknfkl@gmail.com",
       "genero": "Masculino",
       "id": 6
     }
@@ -216,13 +216,10 @@
       "nome": "Teste 123",
       "descricao": "",
       "endereco": "fassfaffsd",
-      "data": "2023-04-28",
-      "hora": "01:26",
+      "data": "2023-04-29",
+      "hora": "15:04",
       "organizadorId": 3,
       "participantes": [
-        {
-          "participanteId": 3
-        },
         {
           "participanteId": 4
         },

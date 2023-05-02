@@ -25,6 +25,14 @@ export class HomePage implements OnInit {
     '--ion-color-primary'
   );
 
+  backgroundColor = getComputedStyle(document.body).getPropertyValue(
+    '--ion-color-light'
+  );
+
+  textColor = getComputedStyle(document.body).getPropertyValue(
+    '--ion-color-dark'
+  );
+
   eventoParticipantes = 0;
   eventoParticipantesPorEvento: number[] = [];
   nomeEventos: string[] = [];
@@ -109,7 +117,25 @@ export class HomePage implements OnInit {
           legend: {
             display: false,
           },
+
+          tooltip: {
+            borderWidth: 1,
+            borderColor: this.primaryColor,
+            backgroundColor: this.backgroundColor,
+            titleColor: this.textColor,
+            bodyColor: this.textColor,
+            displayColors: false,
+            callbacks: {
+              label: function (context) {
+                const datasets = context.chart.data.datasets;
+                const label = datasets[0].data[context.dataIndex];
+
+                return label + ' participante(s)';
+              },
+            },
+          },
         },
+
         scales: {
           y: {
             suggestedMin: 1,
@@ -138,6 +164,23 @@ export class HomePage implements OnInit {
         ],
       },
       options: {
+        plugins: {
+          tooltip: {
+            borderWidth: 1,
+            borderColor: this.primaryColor,
+            backgroundColor: this.backgroundColor,
+            titleColor: this.textColor,
+            bodyColor: this.textColor,
+            callbacks: {
+              label: function (context) {
+                const datasets = context.chart.data.datasets;
+                const label = datasets[0].data[context.dataIndex];
+
+                return label + ' evento(s)';
+              },
+            },
+          },
+        },
         responsive: true,
       },
     });
