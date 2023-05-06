@@ -19,7 +19,7 @@ ou
 
 1. Clonar o repositório
 2. Instalar as dependências do projeto com o comando `npm install`
-3. Iniciar a aplicação com o comando `npm run server`
+3. Iniciar a aplicação com o comando `npm run start`
 
 ## Funcionalidades
 
