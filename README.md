@@ -6,7 +6,7 @@ O projeto usa o json-server para armazenar os dados em um arquivo JSON, que é a
 
 ## Demo
 
-Confira uma demonstração do aplicativo neste [link](https://events-manager-ionic.vercel.app).
+Confira uma demonstração do aplicativo neste [link](https://events-manager-ionic.vercel.app) (read only).
 
 ## Instalação
 
