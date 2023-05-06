@@ -168,12 +168,12 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
       next: (participante) => {
         this.formArray = this.eventoForm.get('participantes') as FormArray;
         if (this.valores) {
-          participante.forEach((p, i) => {
+          participante.forEach((p) => {
             const isChecked = this.participantsInEvent.includes(p.id);
             this.formArray.push(new FormControl(isChecked));
           });
         } else {
-          participante.forEach((p, i) => {
+          participante.forEach(() => {
             this.formArray.push(new FormControl(false));
           });
         }

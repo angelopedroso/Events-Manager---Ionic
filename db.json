@@ -83,6 +83,30 @@
       "email": "asdlknfkl@gmail.com",
       "genero": "Masculino",
       "id": 6
+    },
+    {
+      "nome": "Roberta",
+      "sobrenome": "Close",
+      "telefone": "(48)95645-1565",
+      "email": "robertaclose@email.com",
+      "genero": "Feminino",
+      "id": 7
+    },
+    {
+      "nome": "Tests",
+      "sobrenome": "Powo",
+      "telefone": "(61)95156-5615",
+      "email": "asdfasdf@g.com",
+      "genero": "Feminino",
+      "id": 8
+    },
+    {
+      "nome": "Testes",
+      "sobrenome": "FADFSFDS",
+      "telefone": "(64)96554-6465",
+      "email": "dfsasfsd@fasd.com",
+      "genero": "Masculino",
+      "id": 9
     }
   ],
   "eventos": [
@@ -265,6 +289,64 @@
         }
       ],
       "id": 9
+    },
+    {
+      "nome": "Teste333",
+      "descricao": "",
+      "endereco": "Rua Teste 213 - Minas Gerais/MG",
+      "data": "2023-05-13",
+      "hora": "17:32",
+      "organizadorId": 4,
+      "participantes": [
+        {
+          "participanteId": 4
+        },
+        {
+          "participanteId": 5
+        },
+        {
+          "participanteId": 6
+        }
+      ],
+      "id": 10
+    },
+    {
+      "nome": "Malholy",
+      "descricao": "",
+      "endereco": "Rua OAGDGA 1232 - ASDFAFS",
+      "data": "2023-05-27",
+      "hora": "23:40",
+      "organizadorId": 3,
+      "participantes": [
+        {
+          "participanteId": 1
+        },
+        {
+          "participanteId": 2
+        },
+        {
+          "participanteId": 3
+        },
+        {
+          "participanteId": 4
+        },
+        {
+          "participanteId": 5
+        },
+        {
+          "participanteId": 6
+        },
+        {
+          "participanteId": 7
+        },
+        {
+          "participanteId": 8
+        },
+        {
+          "participanteId": 9
+        }
+      ],
+      "id": 11
     }
   ]
 }

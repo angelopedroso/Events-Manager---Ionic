@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, map, switchMap } from 'rxjs';
+import { Observable, map, mergeMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventoInterface } from '../types/evento.interface';
 import { OrganizadorInterface } from 'src/app/organizadores/types/organizador.interface';
+
+interface ContagemOrganizadores {
+  [id: number]: number;
+}
 
 @Injectable()
 export class EventoService {
@@ -43,14 +47,15 @@ export class EventoService {
     return this.http
       .get<EventoInterface[]>(`${environment.apiUrl}/eventos`)
       .pipe(
-        map((eventos) => {
-          const contagemOrganizadores: { [id: number]: number } = {};
-
-          eventos.forEach((evento) => {
-            const organizadorId = evento.organizadorId;
-            contagemOrganizadores[organizadorId] =
-              (contagemOrganizadores[organizadorId] || 0) + 1;
-          });
+        mergeMap((eventos) => {
+          const idsOrganizadores = eventos.map(
+            (evento) => evento.organizadorId
+          );
+          const contagemOrganizadores: ContagemOrganizadores =
+            idsOrganizadores.reduce((contagem: ContagemOrganizadores, id) => {
+              contagem[id] = contagem[id] ? contagem[id] + 1 : 1;
+              return contagem;
+            }, {});
 
           const idsOrganizadoresMaisAtivos = Object.keys(contagemOrganizadores)
             .sort(
@@ -59,12 +64,6 @@ export class EventoService {
             )
             .slice(0, top);
 
-          return idsOrganizadoresMaisAtivos.map((id) => {
-            const quantidade = contagemOrganizadores[+id];
-            return { id, quantidade };
-          });
-        }),
-        switchMap((organizadoresMaisAtivos) => {
           return this.http
             .get<OrganizadorInterface[]>(`${environment.apiUrl}/organizadores`)
             .pipe(
@@ -74,15 +73,13 @@ export class EventoService {
                 organizadores.forEach((organizador) => {
                   organizadoresMap[organizador.id] = organizador;
                 });
-                return { organizadoresMaisAtivos, organizadoresMap };
+                return idsOrganizadoresMaisAtivos.map((id) => {
+                  const quantidade = contagemOrganizadores[+id];
+                  const nome = organizadoresMap[+id].nomeResponsavel;
+                  return { nome, quantidade };
+                });
               })
             );
-        }),
-        map(({ organizadoresMaisAtivos, organizadoresMap }) => {
-          return organizadoresMaisAtivos.map((organizador) => {
-            const nome = organizadoresMap[+organizador.id].nomeResponsavel;
-            return { nome, quantidade: organizador.quantidade };
-          });
         })
       );
   }
