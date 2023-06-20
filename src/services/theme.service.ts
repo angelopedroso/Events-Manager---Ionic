@@ -1,4 +1,4 @@
-import { Injectable, OnInit, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,10 @@ export class ThemeService {
   }
 
   public toggleDarkMode(theme: string): void {
-    localStorage.setItem('@eventManager:isDarkMode', String(this._darkMode.value));
+    localStorage.setItem(
+      '@eventManager:isDarkMode',
+      String(this._darkMode.value)
+    );
 
     this.renderer.setAttribute(document.body, 'color-theme', theme);
 

@@ -23,7 +23,7 @@
                   <ion-card-title>{{evento.nome}}</ion-card-title>
                 </ion-card-header>
                 <ion-card-content>
-                  <p>{{getOrganizadorName(evento.organizadorId)}}</p>
+                  <p>{{getOrganizadorName(evento.organizador.id)}}</p>
                   <div class="datahora">
                     <p>{{evento.data | date: 'dd/MM/yyyy'}}</p>
                     <p>{{evento.hora}}</p>

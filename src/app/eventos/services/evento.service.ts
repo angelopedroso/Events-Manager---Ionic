@@ -41,46 +41,11 @@ export class EventoService {
     return this.http.delete<void>(`${environment.apiUrl}/eventos/${id}`);
   }
 
-  getOrganizadoresMaisAtivos(
-    top = 3
-  ): Observable<{ nome: string; quantidade: number }[]> {
-    return this.http
-      .get<EventoInterface[]>(`${environment.apiUrl}/eventos`)
-      .pipe(
-        mergeMap((eventos) => {
-          const idsOrganizadores = eventos.map(
-            (evento) => evento.organizadorId
-          );
-          const contagemOrganizadores: ContagemOrganizadores =
-            idsOrganizadores.reduce((contagem: ContagemOrganizadores, id) => {
-              contagem[id] = contagem[id] ? contagem[id] + 1 : 1;
-              return contagem;
-            }, {});
-
-          const idsOrganizadoresMaisAtivos = Object.keys(contagemOrganizadores)
-            .sort(
-              (id1, id2) =>
-                contagemOrganizadores[+id2] - contagemOrganizadores[+id1]
-            )
-            .slice(0, top);
-
-          return this.http
-            .get<OrganizadorInterface[]>(`${environment.apiUrl}/organizadores`)
-            .pipe(
-              map((organizadores) => {
-                const organizadoresMap: { [id: number]: OrganizadorInterface } =
-                  {};
-                organizadores.forEach((organizador) => {
-                  organizadoresMap[organizador.id] = organizador;
-                });
-                return idsOrganizadoresMaisAtivos.map((id) => {
-                  const quantidade = contagemOrganizadores[+id];
-                  const nome = organizadoresMap[+id].nomeResponsavel;
-                  return { nome, quantidade };
-                });
-              })
-            );
-        })
-      );
+  getOrganizadoresMaisAtivos(): Observable<
+    { nome: string; quantidade: number }[]
+  > {
+    return this.http.get<{ nome: string; quantidade: number }[]>(
+      `${environment.apiUrl}/eventos/organizadores-mais-ativos`
+    );
   }
 }

@@ -8,7 +8,7 @@ import { OrganizadorInterface } from '../types/organizador.interface';
 export class OrganizadorService {
   constructor(private httpClient: HttpClient) {}
 
-  getOrganizador(id: number): Observable<OrganizadorInterface> {
+  getOrganizador(id: string): Observable<OrganizadorInterface> {
     return this.httpClient.get<OrganizadorInterface>(
       `${environment.apiUrl}/organizadores/${id}`
     );

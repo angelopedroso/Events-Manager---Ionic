@@ -157,7 +157,7 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
                 data: evento.data,
                 hora: evento.hora,
                 endereco: evento.endereco,
-                organizadorId: evento.organizadorId,
+                organizador: evento.organizador.id,
                 participantes: evento.participantes,
               },
               editLabel: true,
@@ -204,11 +204,10 @@ export class EventosPage implements ViewDidLeave, OnDestroy, OnInit {
     this.subscriptions.add(subscription);
   }
 
-  getOrganizadorName(organizadorId: number | undefined): string {
+  getOrganizadorName(organizadorId: string | undefined): string {
     return (
-      this.organizadores.find(
-        (organizador) => Number(organizador.id) === Number(organizadorId)
-      )?.nomeResponsavel || 'Organizador não identificado'
+      this.organizadores.find((organizador) => organizador.id === organizadorId)
+        ?.nomeResponsavel || 'Organizador não identificado'
     );
   }
 }

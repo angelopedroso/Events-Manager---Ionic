@@ -56,6 +56,9 @@ export class FormPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.valores) {
+      this.valores.telefone = this.formatarTelefoneExibicao(
+        this.valores.telefone
+      );
       this.organizadorForm = this.formBuilder.group({
         nomeResponsavel: [
           this.valores.nomeResponsavel,
@@ -97,6 +100,14 @@ export class FormPageComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (!this.valores) {
+      const telefone = this.organizadorForm.get('telefone')!.value;
+
+      const telefoneFormatado = this.formatarNumeroTelefone(telefone);
+
+      this.organizadorForm.patchValue({
+        telefone: telefoneFormatado,
+      });
+
       this.subscription.add(
         this.organizadorService.save(this.organizadorForm.value).subscribe({
           next: async () => {
@@ -162,5 +173,19 @@ export class FormPageComponent implements OnInit, OnDestroy {
     if (event.key !== undefined && isNaN(Number(event.key))) {
       event.preventDefault();
     }
+  }
+
+  formatarTelefoneExibicao(telefone: string): string {
+    if (telefone.length === 11) {
+      return `(${telefone.slice(0, 2)})${telefone.slice(2, 7)}-${telefone.slice(
+        7
+      )}`;
+    } else {
+      return telefone;
+    }
+  }
+
+  formatarNumeroTelefone(numero: string): string {
+    return numero.replace(/\D/g, '');
   }
 }

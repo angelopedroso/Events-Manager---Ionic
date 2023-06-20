@@ -1,5 +1,5 @@
 export interface ParticipanteInterface {
-  id: number;
+  id: string;
   nome: string;
   sobrenome: string;
   email: string;

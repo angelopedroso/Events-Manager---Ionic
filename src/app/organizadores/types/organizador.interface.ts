@@ -1,5 +1,5 @@
 export interface OrganizadorInterface {
-  id: number;
+  id: string;
   nomeEmpresa?: string;
   nomeResponsavel: string;
   email: string;

@@ -136,7 +136,7 @@ export class ParticipantesPage
     await modal.present();
   }
 
-  async handleEditParticipante(id: number) {
+  async handleEditParticipante(id: string) {
     if (id) {
       this.participanteService.getParticipante(id).subscribe({
         next: async (participante) => {
@@ -147,7 +147,7 @@ export class ParticipantesPage
                 id: id,
                 nome: participante.nome,
                 sobrenome: participante.sobrenome || '',
-                telefone: participante.telefone,
+                telefone: participante.telefone.replace(/\D/g, ''),
                 email: participante.email,
                 genero: participante.genero,
               },
@@ -192,5 +192,15 @@ export class ParticipantesPage
       },
     });
     this.subscriptions.add(subscription);
+  }
+
+  formatarTelefoneExibicao(telefone: string): string {
+    if (telefone.length === 11) {
+      return `(${telefone.slice(0, 2)})${telefone.slice(2, 7)}-${telefone.slice(
+        7
+      )}`;
+    } else {
+      return telefone;
+    }
   }
 }

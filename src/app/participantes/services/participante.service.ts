@@ -8,7 +8,7 @@ import { ParticipanteInterface } from '../types/participante.interface';
 export class ParticipanteService {
   constructor(private httpClient: HttpClient) {}
 
-  getParticipante(id: number): Observable<ParticipanteInterface> {
+  getParticipante(id: string): Observable<ParticipanteInterface> {
     return this.httpClient.get<ParticipanteInterface>(
       `${environment.apiUrl}/participantes/${id}`
     );

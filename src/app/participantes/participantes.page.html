@@ -13,7 +13,7 @@
       <ion-item>
         <ion-label>
           {{ participante.nome +' '+ (participante.sobrenome || '') }}
-          <p>{{participante.telefone}}</p></ion-label
+          <p>{{formatarTelefoneExibicao(participante.telefone)}}</p></ion-label
         >
       </ion-item>
 

@@ -48,7 +48,7 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
   formArray!: FormArray;
   eventoForm!: FormGroup;
-  eventos!: number[];
+  eventos!: string[];
   editMode: boolean = false;
   id!: number;
   notDateEdited: boolean = true;
@@ -58,7 +58,7 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
   dateTimeFormatted: string = '';
 
   organizadores: OrganizadorInterface[] = [];
-  participantsInEvent!: (number | null)[];
+  participantsInEvent!: (string | null)[];
   participantes: ParticipanteInterface[] = [];
 
   constructor(
@@ -117,24 +117,24 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
         ],
         data: [this.valores.data, Validators.required],
         hora: [this.valores.hora, Validators.required],
-        organizadorId: [this.valores.organizadorId + '', Validators.required],
+        organizadorId: [this.valores.organizador + '', Validators.required],
         participantes: new FormArray([], [minSelectedCheckboxes()]),
       });
 
       this.eventoService.getEvento(this.valores.id).subscribe({
         next: (evento) => {
-          this.eventos = evento.participantes.map((ep) => ep.participanteId);
-
+          this.eventos = evento.participantes?.map((ep) => ep.id);
           this.participanteService.getParticipantes().subscribe({
             next: (participante) => {
               this.participantsInEvent = participante
                 .map((p) => {
-                  return this.eventos.includes(p.id) ? p.id : null;
+                  return this.eventos?.includes(p.id) ? p.id : null;
                 })
                 .filter((pId) => pId !== null);
             },
           });
         },
+
         complete: () => {
           this.addCheckboxes();
         },
@@ -169,7 +169,7 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
         this.formArray = this.eventoForm.get('participantes') as FormArray;
         if (this.valores) {
           participante.forEach((p) => {
-            const isChecked = this.participantsInEvent.includes(p.id);
+            const isChecked = this.participantsInEvent?.includes(p.id);
             this.formArray.push(new FormControl(isChecked));
           });
         } else {
@@ -203,15 +203,12 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
 
     const selectedParticipanteIds = this.eventoForm.value.participantes
       .map((checked: boolean, index: number) =>
-        checked ? { participanteId: this.participantes[index].id } : null
+        checked ? { id: this.participantes[index].id } : null
       )
-      .filter((value: { participanteId: number }) => value !== null);
-
-    const formattedOrganizador = Number(this.eventoForm.value.organizadorId);
+      .filter((value: { id: number }) => value !== null);
 
     const eventoData = this.eventoForm.getRawValue();
     eventoData.participantes = selectedParticipanteIds;
-    eventoData.organizadorId = formattedOrganizador;
 
     if (this.valores) {
       this.eventoService

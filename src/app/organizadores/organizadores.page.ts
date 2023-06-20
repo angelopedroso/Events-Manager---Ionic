@@ -136,7 +136,7 @@ export class OrganizadoresPage
     await modal.present();
   }
 
-  async handleEditOrganizador(id: number) {
+  async handleEditOrganizador(id: string) {
     if (id) {
       this.organizadorService.getOrganizador(id).subscribe({
         next: async (organizador) => {
@@ -147,7 +147,7 @@ export class OrganizadoresPage
                 id: id,
                 nomeResponsavel: organizador.nomeResponsavel,
                 nomeEmpresa: organizador.nomeEmpresa || '',
-                telefone: organizador.telefone,
+                telefone: organizador.telefone.replace(/\D/g, ''),
                 email: organizador.email,
                 cpf: organizador.cpf,
               },
@@ -192,5 +192,15 @@ export class OrganizadoresPage
       },
     });
     this.subscriptions.add(subscription);
+  }
+
+  formatarTelefoneExibicao(telefone: string): string {
+    if (telefone.length === 11) {
+      return `(${telefone.slice(0, 2)})${telefone.slice(2, 7)}-${telefone.slice(
+        7
+      )}`;
+    } else {
+      return telefone;
+    }
   }
 }
